@@ -56,6 +56,18 @@ public class StringOperations {
         return charCountMap;
     }
 
+    // Поиск подстроки в строках коллекции
+    public List<String> findSubstrings(String substring) {
+        List<String> matchingStrings = new ArrayList<>();
+        for (String str : stringList) {
+            if (str.contains(substring)) {
+                matchingStrings.add(str);
+            }
+        }
+        return matchingStrings;
+    }
+
+
     public void displayCollection() {
         for (String str : stringList) {
             System.out.println(str);
@@ -88,6 +100,10 @@ public class StringOperations {
         // Статистика по символам
         System.out.println("\nCharacter Statistics:");
         System.out.println(stringOps.characterStatistics());
+
+        // Поиск подстроки
+        System.out.println("\nStrings containing 'll':");
+        System.out.println(stringOps.findSubstrings("ll"));
 
         // Экспорт в XML
         try {
