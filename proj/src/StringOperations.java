@@ -2,13 +2,13 @@ import java.io.*;
 import java.util.*;
 
 public class StringOperations {
-    private ArrayList<String> stringList;
+    private ArrayList<String> stringList; //динамический список (ArrayList) строк (String)
 
     public StringOperations() {
         this.stringList = new ArrayList<>();
     }
 
-    // 1. Добавление и удаление объектов
+    // Добавление и удаление объектов
     public void addObject(String str) {
         stringList.add(str);
     }
@@ -17,8 +17,8 @@ public class StringOperations {
         stringList.remove(str);
     }
 
-    // 2. Поиск одинаковых элементов с подсчетом совпадений
-    public Map<String, Integer> findDuplicates() {
+    // Поиск одинаковых элементов с подсчетом совпадений
+    public Map<String, Integer> findDuplicates() { //возвращает отображение (Map), где ключи - это строки, а значения - целые числа (число повторений).
         Map<String, Integer> frequencyMap = new HashMap<>();
         for (String str : stringList) {
             frequencyMap.put(str, frequencyMap.getOrDefault(str, 0) + 1);
@@ -26,7 +26,7 @@ public class StringOperations {
         return frequencyMap;
     }
 
-    // 3. Выгрузка в xml-файл
+    // Выгрузка в xml-файл
     public void exportToXml(String fileName) throws IOException {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
             writer.println("<strings>");
@@ -34,6 +34,14 @@ public class StringOperations {
                 writer.println("  <string>" + str + "</string>");
             }
             writer.println("</strings>");
+        }
+    }
+
+    // Реверс всех строк, входящих в коллекцию
+    public void reverseStrings() {
+        for (int i = 0; i < stringList.size(); i++) {
+            String reversed = new StringBuilder(stringList.get(i)).reverse().toString();
+            stringList.set(i, reversed);
         }
     }
 
@@ -61,6 +69,10 @@ public class StringOperations {
         System.out.println("\nDuplicate Frequencies:");
         System.out.println(stringOps.findDuplicates());
 
+        // Реверс всех строк
+        stringOps.reverseStrings();
+        System.out.println("\nReversed Collection:");
+        stringOps.displayCollection();
 
         // Экспорт в XML
         try {
