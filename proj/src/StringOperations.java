@@ -83,6 +83,16 @@ public class StringOperations {
         }
     }
 
+    // Расширить функциональность класса ArrayList методом compareInnerObjects(int firstIndex, int secondIndex)
+    public boolean compareInnerObjects(int firstIndex, int secondIndex) {
+        if (firstIndex >= 0 && firstIndex < stringList.size() &&
+                secondIndex >= 0 && secondIndex < stringList.size()) {
+            return stringList.get(firstIndex).equals(stringList.get(secondIndex));
+        } else {
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         StringOperations stringOps = new StringOperations();
 
@@ -122,6 +132,9 @@ public class StringOperations {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // Сравнение объектов по индексам
+        System.out.println("\nCompare objects at index 0 and 1: " + stringOps.compareInnerObjects(0, 1));
 
         // Экспорт в XML
         try {
