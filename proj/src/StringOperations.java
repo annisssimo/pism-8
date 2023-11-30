@@ -67,6 +67,15 @@ public class StringOperations {
         return matchingStrings;
     }
 
+    // Инициализация листа по текстовому файлу и вывод содержимого коллекции на экран
+    public void initializeFromFile(String fileName) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringList.add(line);
+            }
+        }
+    }
 
     public void displayCollection() {
         for (String str : stringList) {
@@ -104,6 +113,15 @@ public class StringOperations {
         // Поиск подстроки
         System.out.println("\nStrings containing 'll':");
         System.out.println(stringOps.findSubstrings("ll"));
+
+        // Инициализация из файла
+        try {
+            stringOps.initializeFromFile("input.txt");
+            System.out.println("\nCollection after file initialization:");
+            stringOps.displayCollection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Экспорт в XML
         try {
