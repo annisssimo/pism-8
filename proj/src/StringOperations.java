@@ -17,6 +17,15 @@ public class StringOperations {
         stringList.remove(str);
     }
 
+    // 2. Поиск одинаковых элементов с подсчетом совпадений
+    public Map<String, Integer> findDuplicates() {
+        Map<String, Integer> frequencyMap = new HashMap<>();
+        for (String str : stringList) {
+            frequencyMap.put(str, frequencyMap.getOrDefault(str, 0) + 1);
+        }
+        return frequencyMap;
+    }
+
     public void displayCollection() {
         for (String str : stringList) {
             System.out.println(str);
@@ -26,13 +35,19 @@ public class StringOperations {
     public static void main(String[] args) {
         StringOperations stringOps = new StringOperations();
 
-        stringOps.addObject("eefe");
-        stringOps.addObject("Woefrld");
+        // Пример использования
+        stringOps.addObject("Hello");
+        stringOps.addObject("World");
+        stringOps.addObject("Hello");
+        stringOps.addObject("Java");
+        stringOps.addObject("Programming");
 
-        stringOps.removeObject("eefe");
-
+        // Вывести коллекцию
         System.out.println("Original Collection:");
         stringOps.displayCollection();
+
+        System.out.println("\nDuplicate Frequencies:");
+        System.out.println(stringOps.findDuplicates());
     }
 
 }
