@@ -26,6 +26,17 @@ public class StringOperations {
         return frequencyMap;
     }
 
+    // 3. Выгрузка в xml-файл
+    public void exportToXml(String fileName) throws IOException {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            writer.println("<strings>");
+            for (String str : stringList) {
+                writer.println("  <string>" + str + "</string>");
+            }
+            writer.println("</strings>");
+        }
+    }
+
     public void displayCollection() {
         for (String str : stringList) {
             System.out.println(str);
@@ -46,8 +57,19 @@ public class StringOperations {
         System.out.println("Original Collection:");
         stringOps.displayCollection();
 
+        // Поиск одинаковых элементов с подсчетом совпадений
         System.out.println("\nDuplicate Frequencies:");
         System.out.println(stringOps.findDuplicates());
+
+
+        // Экспорт в XML
+        try {
+            stringOps.exportToXml("output.xml");
+            System.out.println("\nCollection exported to XML file.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
