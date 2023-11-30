@@ -1,5 +1,4 @@
 <strings>
-  <string>olleH</string>
   <string>dlroW</string>
   <string>olleH</string>
   <string>avaJ</string>
@@ -9,4 +8,5 @@
   <string>Programming is fun.</string>
   <string>Java is awesome.</string>
   <string>Testing the input file.</string>
+  <string>NewString</string>
 </strings>

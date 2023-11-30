@@ -93,6 +93,26 @@ public class StringOperations {
         }
     }
 
+    // Посчитать длины строк входящих в коллекцию, и вывести результат в упорядоченном виде
+    public List<Integer> calculateAndSortLengths() {
+        List<Integer> lengths = new ArrayList<>();
+        for (String str : stringList) {
+            lengths.add(str.length());
+        }
+        Collections.sort(lengths);
+        return lengths;
+    }
+
+    // Реализовать возможность добавления в динамическую коллекцию
+    public void addDynamic(String str, int maxSize) {
+        if (stringList.size() < maxSize) {
+            stringList.add(str);
+        } else {
+            stringList.remove(0);
+            stringList.add(str);
+        }
+    }
+
     public static void main(String[] args) {
         StringOperations stringOps = new StringOperations();
 
@@ -136,6 +156,15 @@ public class StringOperations {
         // Сравнение объектов по индексам
         System.out.println("\nCompare objects at index 0 and 1: " + stringOps.compareInnerObjects(0, 1));
 
+        // Длины строк в упорядоченном виде
+        System.out.println("\nSorted lengths of strings:");
+        System.out.println(stringOps.calculateAndSortLengths());
+
+        // Добавление в динамическую коллекцию
+        stringOps.addDynamic("NewString", 3);
+        System.out.println("\nCollection after dynamic addition:");
+        stringOps.displayCollection();
+
         // Экспорт в XML
         try {
             stringOps.exportToXml("output.xml");
@@ -143,7 +172,5 @@ public class StringOperations {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
 }
