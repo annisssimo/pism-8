@@ -45,6 +45,17 @@ public class StringOperations {
         }
     }
 
+    // Статистика по всем символам, содержащимся в строках коллекции
+    public Map<Character, Integer> characterStatistics() {
+        Map<Character, Integer> charCountMap = new HashMap<>();
+        for (String str : stringList) {
+            for (char c : str.toCharArray()) {
+                charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
+            }
+        }
+        return charCountMap;
+    }
+
     public void displayCollection() {
         for (String str : stringList) {
             System.out.println(str);
@@ -73,6 +84,10 @@ public class StringOperations {
         stringOps.reverseStrings();
         System.out.println("\nReversed Collection:");
         stringOps.displayCollection();
+
+        // Статистика по символам
+        System.out.println("\nCharacter Statistics:");
+        System.out.println(stringOps.characterStatistics());
 
         // Экспорт в XML
         try {
